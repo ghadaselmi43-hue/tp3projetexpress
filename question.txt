@@ -1,0 +1,27 @@
+Question 3:
+
+1. 
+res.send(...) : Permet d'envoyer différents types de réponses : texte, HTML, objets, etc.
+res.json(...) : Permet d'envoyer une réponse au format JSON.
+
+Question 4 :
+req.params.id est une chaîne de caractères (string).elle envoyer une reponse json suivant id.
+
+Question 5:
+
+le type de id est number.
+
+Question 6 : 
+
+req.params : envoyer le parametre du donneur suite a l identifiant du donneur au serveur .
+
+req.query : envoyer le parametre du donneur près le symbole ? dans l'URL.
+
+Question 7 :
+
+1. req.body : permet de récupérer les données envoyées par le client dans le corps d'une requête HTTP.
+2. On utilise app.use(express.json()) pour que Express.js puisse lire les données JSON envoyées par le client et les mettre dans req.body.
+3. Nous utilisons 201 parce qu'un nouveau donneur vient d'être créé.
+
+Question 8 :
+
