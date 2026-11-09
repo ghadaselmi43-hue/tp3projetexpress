@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Donneur {
+  id            Int    @id @default(autoincrement())
+  nom           String @db.VarChar(100)
+  prenom        String @db.VarChar(100)
+  groupeSanguin String @map("groupe_sanguin") @db.VarChar(3)
+
+  @@map("donneurs")
+}

@@ -1,5 +1,5 @@
-import express from "express";
 
+/*
 const app = express();
 const PORT = 3000;
 
@@ -157,10 +157,10 @@ app.delete("/api/donneurs/:id", (req, res) => {
 
     res.status(204).send();
 });
-
+*/
 import express from "express";
-
 import donneurRoutes from "./routes/donneur.routes.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -175,10 +175,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/donneurs", donneurRoutes);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
+
 
 
 

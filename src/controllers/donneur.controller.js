@@ -1,23 +1,41 @@
 import * as donneurService from "../services/donneur.service.js";
 
-export function getAll(req, res) {
 
-    const donneurs = donneurService.getAll();
-
-    res.json(donneurs);
+export function getAll(req, res, next) {
+    try {
+        const donneurs = donneurService.getAll();
+        res.json(donneurs);
+    } catch (error) {
+        next(error);
+    }
 }
 
-export function getById(req, res) {
+export function getById(req, res, next) {
+    try {
+        const id = req.params.id;
+        const donneur = donneurService.getById(id);
 
-    const id = Number(req.params.id);
+        if (!donneur) {
+            const error = new Error("Donneur introuvable");
+            error.statusCode = 404;
+            throw error;
+        }
 
-    const donneur = donneurService.getById(id);
-
-    if (!donneur) {
-        return res.status(404).json({
-            message: "Donneur introuvable"
-        });
+        res.json(donneur);
+    } catch (error) {
+        next(error);
     }
+}
 
-    res.json(donneur);
+export function create(req, res, next) {
+    try {
+        const donneur = donneurService.create(req.body);
+
+        res.status(201).json({
+            message: "Donneur créé avec succès",
+            donneur
+        });
+    } catch (error) {
+        next(error);
+    }
 }
