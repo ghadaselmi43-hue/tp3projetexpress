@@ -4,14 +4,38 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+ url  = env("DATABASE_URL")
 }
 
+
 model Donneur {
-  id            Int    @id @default(autoincrement())
-  nom           String @db.VarChar(100)
-  prenom        String @db.VarChar(100)
-  groupeSanguin String @map("groupe_sanguin") @db.VarChar(3)
+  id            Int      @id @default(autoincrement())
+  nom           String   @db.VarChar(100)
+  prenom        String   @db.VarChar(100)
+  groupeSanguin String   @map("groupe_sanguin") @db.VarChar(3)
+  telephone     String?  @db.VarChar(20)
+
+  dons          Don[]
 
   @@map("donneurs")
+}
+
+model Centre {
+  id        Int    @id @default(autoincrement())
+  nom       String
+  ville     String
+
+  dons      Don[]
+}
+
+model Don {
+  id        Int      @id @default(autoincrement())
+  dateDon   DateTime @default(now())
+  volume    Int
+
+  donneurId Int
+  centreId  Int
+
+  donneur   Donneur  @relation(fields: [donneurId], references: [id])
+  centre    Centre   @relation(fields: [centreId], references: [id])
 }

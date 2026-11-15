@@ -161,12 +161,16 @@ app.delete("/api/donneurs/:id", (req, res) => {
 import express from "express";
 import donneurRoutes from "./routes/donneur.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import donRoutes from "./routes/don.routes.js";
+
 
 const app = express();
 
 const PORT = 3000;
-
 app.use(express.json());
+
+app.use("/api/dons", donRoutes);
+
 
 app.get("/", (req, res) => {
     res.json({

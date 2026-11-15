@@ -25,3 +25,13 @@ Question 7 :
 
 Question 8 :
 
+
+
+
+tp 4 : 
+
+la dépendence zod est mettre dans package.json .
+
+schema.safeParse(donneur) est une instruction JavaScript/TypeScript souvent utilisée avec la bibliothèque Zod pour vérifier que les données d'un donneur respectent un format défini.
+
+
