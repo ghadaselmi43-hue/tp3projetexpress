@@ -39,3 +39,18 @@ model Don {
   donneur   Donneur  @relation(fields: [donneurId], references: [id])
   centre    Centre   @relation(fields: [centreId], references: [id])
 }
+enum Role {
+  ADMIN
+  AGENT_CENTRE
+  RESPONSABLE_STOCK
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  email     String   @unique
+  password  String
+  role      Role     @default(AGENT_CENTRE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
